@@ -1,0 +1,10 @@
+# This is to install python on Ubuntu 16.04 Server instances.
+# Ubuntu 16.04 Server does not come with python2 installed by default which is required by ansible
+
+- hosts: inet4031
+  sudo: yes
+  remote_user: ubuntu
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python
