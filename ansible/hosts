@@ -1,5 +1,25 @@
 # Inventory file for ansible
 
-[inet4031]
+[inet4031:children]
+ldap_nfs
+ldap_nfs_test
+
+[ldap_nfs:children]
+ldap_nfs_server
+ldap_nfs_client
+
+[ldap_nfs_test:children]
+ldap_nfs_server_test
+ldap_nfs_client_test
+
+[ldap_nfs_server_test_group]
+ldap_nfs_server_test-1 ansible_host=18.224.62.73 node_name=ldap_nfs_server_test
+
+[ldap_nfs_client_test_group]
+ldap_nfs_client_test-1 ansible_host=18.191.139.35 node_name=ldap_nfs_client_test
+
+[ldap_nfs_server]
 18.217.164.189
+
+[ldap_nfs_client]
 18.224.52.158
