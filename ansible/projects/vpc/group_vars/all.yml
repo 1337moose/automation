@@ -1,0 +1,6 @@
+# group_vars/all.yml
+# ---
+# global definitions, not too much to go here...
+
+# specify to run Ansible for hosts locally by default, not to connect via SSH
+ansible_connection: local

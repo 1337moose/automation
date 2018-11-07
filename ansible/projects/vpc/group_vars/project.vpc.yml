@@ -1,0 +1,10 @@
+# group_vars/project.vpc.yml
+# ---
+# specify VPC details and AWS credentials
+
+# general details about our VPC
+vpc_name: inet4007vpc
+vpc_dns_zone: inet4007
+
+# credentials for AWS (no, they aren't real...)
+aws_region: us-east-2

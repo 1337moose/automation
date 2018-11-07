@@ -26,7 +26,7 @@ ldap_nfs_client_test-1 ansible_host=18.191.139.35 node_name=ldap_nfs_client_test
 [ldap_nfs_client]
 18.224.52.158
 
-## hosts for inet4007vpc
+## Name for inet4007vpc
 
 [inet4007vpc]
 inet4007vpc
