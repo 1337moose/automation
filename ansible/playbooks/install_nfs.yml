@@ -1,6 +1,7 @@
 # This is a playbook to install nfs_kernel_server and nfs_common
 
-- hosts: ldap_nfs_server_test
+- hosts: ldap_nfs_server
+  remote_user: ubuntu
   become: true
   any_errors_fatal: true
   tasks:
@@ -31,7 +32,8 @@
         state: restarted
 
 
-- hosts: ldap_nfs_client_test
+- hosts: ldap_nfs_client
+  remote_user: ubuntu
   become: true
   any_errors_fatal: true
   tasks:
@@ -51,6 +53,6 @@
       mount:
         name: /moose_nfs
         fstype: nfs
-        src: '{{ hostvars[groups["ldap_nfs_server_test"][0]].ansible_host }}:/moose_nfs'
+        src: '{{ hostvars[groups["ldap_nfs_server"][0]].ansible_host }}:/moose_nfs'
         path: /moose_nfs
         state: mounted
