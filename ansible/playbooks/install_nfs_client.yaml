@@ -19,5 +19,5 @@
 
 - name: Create a personalized file
   file:
-      path: "/moose_nfs/{{ inventory_hostname }}.txt"
-      state: touch
+      path: "/moose_nfs/{{ inventory_hostname }}"
+      state: directory
