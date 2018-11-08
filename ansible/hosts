@@ -2,26 +2,16 @@
 
 # hosts for nfs install
 
-[inet4031:children]
-ldap_nfs
-ldap_nfs_test
-
 [ldap_nfs:children]
 ldap_nfs_server
 ldap_nfs_client
 
-[ldap_nfs_test:children]
-ldap_nfs_server_test_group
-ldap_nfs_client_test_group
-
-[ldap_nfs_server_test_group]
-ldap_nfs_server_test_1 ansible_host=18.224.62.73 node_name=ldap_nfs_server_test
-
-[ldap_nfs_client_test_group]
-ldap_nfs_client_test_1 ansible_host=18.191.139.35 node_name=ldap_nfs_client_test
-
 [ldap_nfs_server]
-ldap_nfs_server_1 ansible_host=18.222.117.166
+ldap_nfs_server_1 ansible_host=13.59.43.152
 
 [ldap_nfs_client]
-ldap_nfs_client_1 ansible_host=18.191.116.235
+ldap_nfs_client_1 ansible_host=18.223.170.233
+ldap_nfs_client_2 ansible_host=18.218.174.78
+ldap_nfs_client_3 ansible_host=18.222.68.118
+ldap_nfs_client_4 ansible_host=18.191.127.230
+ldap_nfs_client_5 ansible_host=18.221.123.142

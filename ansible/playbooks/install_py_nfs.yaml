@@ -1,0 +1,23 @@
+- hosts: ldap_nfs
+  remote_user: ubuntu
+  become: true
+  any_errors_fatal: true
+  gather_facts: false
+  tasks:
+    - include_tasks: install_python.yaml
+
+- hosts: ldap_nfs_server
+  remote_user: ubuntu
+  become: true
+  any_errors_fatal: true
+  gather_facts: false
+  tasks:
+    - include_tasks: install_nfs_server.yaml
+
+- hosts: ldap_nfs_client
+  remote_user: ubuntu
+  become: true
+  any_errors_fatal: true
+  gather_facts: false
+  tasks:
+    - include_tasks: install_nfs_client.yaml

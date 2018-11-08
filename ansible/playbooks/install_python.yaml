@@ -2,10 +2,5 @@
 # Ubuntu 16.04 Server does not come with python2 installed by default which is required by ansible
 # To avoid fingerprint checking, edit ansible.cfg
 
-- hosts: ldap_nfs
-  become: true
-  remote_user: ubuntu
-  gather_facts: no
-  tasks:
-    - name: 'install python2'
-      raw: sudo apt-get -y install python
+- name: 'install python2'
+  raw: sudo apt-get -y install python
