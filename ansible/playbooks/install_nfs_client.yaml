@@ -4,13 +4,6 @@
     state: present
     update_cache: true
 
-- name: Connect the moose_nfs file share
-  file:
-    path: /moose_nfs
-    owner: ubuntu
-    state: directory
-    mode: 0666
-
 - name: Mount the drive
   mount:
     name: /moose_nfs
@@ -19,9 +12,12 @@
     path: /moose_nfs
     state: mounted
 
+- name: Connect the moose_nfs file share
+  file:
+    path: /moose_nfs
+    state: directory
+
 - name: Create a personalized file
-  copy:
-    content: "Made by {{ inventory_hostname }}\n"
-    dest: /moose_nfs/{{ inventory_hostname }}.txt
-    owner: ubuntu
-    mode: 0666
+  file:
+      path: "/moose_nfs/{{ inventory_hostname }}.txt"
+      state: touch
