@@ -12,25 +12,18 @@ variable "vpc_cidr" {
   default = "172.16.0.0/16"
 }
 
-variable "public_prod_subnet_cidr" {
+variable "public_subnet_cidr" {
   description = "CIDR for public_prod subnet"
-  default = "172.16.1.0/24"
+  default = ["172.16.1.0/24","172.16.2.0/24"]
+  type = "list"
 }
 
-variable "public_failover_subnet_cidr" {
-  description = "CIDR for the public_failover subnet"
-  default = "172.16.2.0/24"
+variable "private_subnet_cidr" {
+  description = "CIDR for the private subnet"
+  default = ["172.16.3.0/24","172.16.4.0/24"]
+  type = "list"
 }
 
-variable "private_prod_subnet_cidr" {
-  description = "CIDR for the private_prod subnet"
-  default = "172.16.3.0/24"
-}
-
-variable "private_test_subnet_cidr" {
-  description = "CIDR for the private_test subnet"
-  default = "172.16.4.0/24"
-}
 variable "ubuntu_ami" {
   description = "Amazon Linux AMI"
   default = "ami-0782e9ee97725263d"

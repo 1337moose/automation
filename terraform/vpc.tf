@@ -9,47 +9,30 @@ resource "aws_vpc" "default" {
 }
 
 # Define public_prod subnet
-resource "aws_subnet" "public_prod_subnet" {
+resource "aws_subnet" "public_subnet" {
+  count = "${length(var.public_subnet_cidr)}"
+
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.public_prod_subnet_cidr}"
+  cidr_block = "${var.public_subnet_cidr[count.index]}"
   availability_zone = "${var.aws_availability_zone}"
 
   tags{
-    Name = "Public Prod Subnet"
+    Name = "Public Subnet"
   }
 }
 
-#Define public_failover subnet
-resource "aws_subnet" "public_failover_subnet" {
-  vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.public_failover_subnet_cidr}"
-  availability_zone = "${var.aws_availability_zone}"
-
-  tags {
-    Name = "Public Failover Subnet"
-  }
-}
 
 
 #Define private_prod subnet
-resource "aws_subnet" "private_prod_subnet" {
+resource "aws_subnet" "private_subnet" {
+  count = "${length(var.private_subnet_cidr)}"
+
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.private_prod_subnet_cidr}"
+  cidr_block = "${var.private_subnet_cidr[count.index]}"
   availability_zone = "${var.aws_availability_zone}"
 
   tags {
-    Name = "Private Prod Subnet"
-  }
-}
-
-#Define private_prod subnet
-resource "aws_subnet" "private_test_subnet" {
-  vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.private_test_subnet_cidr}"
-  availability_zone = "${var.aws_availability_zone}"
-
-  tags {
-    Name = "Private Test Subnet"
+    Name = "Private Subnet"
   }
 }
 
@@ -79,8 +62,19 @@ resource "aws_route_table" "route_table" {
 
 # Assign the route table to the public Subnet
 # Need to add all subnets to this route table?
-resource "aws_route_table_association" "public_prod-rt" {
-  subnet_id = "${aws_subnet.public_prod_subnet.id}"
+resource "aws_route_table_association" "public_rt" {
+  count = "${length(var.public_subnet_cidr)}"
+
+  subnet_id = "${element(aws_subnet.public_subnet.*.id,count.index)}"
+  route_table_id = "${aws_route_table.route_table.id}"
+}
+
+# Assign the route table to the public Subnet
+# Need to add all subnets to this route table?
+resource "aws_route_table_association" "private_rt" {
+  count = "${length(var.private_subnet_cidr)}"
+
+  subnet_id = "${element(aws_subnet.private_subnet.*.id,count.index)}"
   route_table_id = "${aws_route_table.route_table.id}"
 }
 
@@ -88,7 +82,6 @@ resource "aws_route_table_association" "public_prod-rt" {
 resource "aws_security_group" "4007sg" {
   name = "Default 4007 Security Group"
   description = "Allow incoming SSH access"
-
 
   ingress {
     from_port = 22
@@ -108,26 +101,5 @@ resource "aws_security_group" "4007sg" {
 
   tags {
     Name = "Default Security Group"
-  }
-}
-
-# Define SSH key pair for our instances
-resource "aws_key_pair" "default" {
-  key_name = "inet4007"
-  public_key = "${file("${var.key_path}")}"
-}
-
-# Define webserver inside the public subnet
-resource "aws_instance" "public_prod_1" {
-   ami  = "${var.ubuntu_ami}"
-   instance_type = "t1.micro"
-   key_name = "${aws_key_pair.default.id}"
-   subnet_id = "${aws_subnet.public_prod_subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.4007sg.id}"]
-   associate_public_ip_address = true
-   source_dest_check = false
-
-  tags {
-    Name = "public_prod"
   }
 }
