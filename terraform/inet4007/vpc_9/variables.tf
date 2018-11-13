@@ -33,3 +33,7 @@ variable "key_path" {
   description = "SSH Public Key path"
   default = "/home/moose/Documents/School/inet4007/inet4007.pem"
 }
+
+variable "s3_log_bucket"{
+  default = "log_bucket"
+}

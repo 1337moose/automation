@@ -35,3 +35,7 @@ output "private_test_1_ips" {
   value = ["${aws_instance.private_test.1.public_ip}"
   ,"${aws_instance.private_test.1.private_ip}"]
 }
+
+output "s3_log_bucket_arn"{
+  value = ["${aws_s3_bucket.log_bucket.arn}"]
+}
