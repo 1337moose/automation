@@ -1,5 +1,4 @@
 # Inventory file for ansible
-
 # hosts for nfs install
 
 [ldap_nfs:children]
