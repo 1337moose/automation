@@ -11,6 +11,8 @@ output "nfs_client_0" {
     ,"${aws_instance.nfs_client.0.private_ip}"]
 }
 
+## Uncomment below after creation of ec2 instances
+
 # output "nfs_client_1" {
 #   value = ["${aws_instance.nfs_client.1.public_ip}"
 #     ,"${aws_instance.nfs_client.1.private_ip}"]

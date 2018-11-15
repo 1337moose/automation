@@ -1,9 +1,12 @@
 # automation
 Repository for anything automation
 
+---
+
 ## Requirements
 Prerequisite packages that must be installed are: aws-cli, python (both versions to be safe), ansible, and terraform. aws-cli should contain your aws_secret_access_key and aws_access_key_ids. See improvements for security concerns. Ansible config may need to be configured to appropriately address the hosts file.
 
+---
 
 ## Ansible
 
@@ -12,6 +15,7 @@ Ansible currently SSH's into two ec2 instances (Ubuntu 16.04 Server) creating on
 
 The playbook assumes that the AWS configuration is set up correctly with NFS ports being opened.
 
+---
 
 ## Terraform
 
@@ -23,13 +27,21 @@ inet4031 creates a simple VPC that contains 6 Ubuntu 16.04 Server images, one be
 
 #### Instructions
 `git clone https://github.com/1337moose/automation.git`
+
 `cd automation/terraform/inet4031`
+
 `terraform init`
+
 `terraform plan`
+
 `terraform apply`
+
 Uncomment lines in output.tf
+
 `terraform refresh`
+
 `DONE!`
+
 
 ## Improvements
 - This document should be improved to better document AWS key and IAM security along with implementing this repository's projects with such security.
@@ -40,4 +52,4 @@ Uncomment lines in output.tf
 
 ### References
 - [create-aws-infrastructure-with-terraform](https://jee-appy.blogspot.com/2018/07/create-aws-infrastructure-with-terraform.html)
--[Automating with Ansible: Building a VPC](https://medium.com/@tomwwright/automating-with-ansible-building-a-vpc-c252944d3d2e)
+- [Automating with Ansible: Building a VPC](https://medium.com/@tomwwright/automating-with-ansible-building-a-vpc-c252944d3d2e)
