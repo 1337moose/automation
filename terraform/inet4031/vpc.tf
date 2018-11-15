@@ -8,7 +8,7 @@ resource "aws_vpc" "inet4031vpc" {
   }
 }
 
-# Define public_prod subnet
+# Define the subnet
 resource "aws_subnet" "4031subnet" {
   vpc_id = "${aws_vpc.inet4031vpc.id}"
   cidr_block = "${var.4031subnet_cidr}"
@@ -43,7 +43,7 @@ resource "aws_route_table" "route_table" {
   }
 }
 
-# Assign the route table to the public Subnet
+# Assign the route table to the subnet
 resource "aws_route_table_association" "4031_rt" {
   subnet_id = "${aws_subnet.4031subnet.id}"
   route_table_id = "${aws_route_table.route_table.id}"
@@ -60,6 +60,20 @@ resource "aws_security_group" "4031sg" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks =  ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 2049
+    to_port = 2049
+    protocol = "tcp"
+    cidr_blocks = ["${var.4031subnet_cidr}"]
+  }
+
+  ingress {
+    from_port = 111
+    to_port = 111
+    protocol = "udp"
+    cidr_blocks = ["${var.4031subnet_cidr}"]
   }
 
   egress {

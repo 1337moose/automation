@@ -14,7 +14,7 @@ variable "vpc_cidr" {
 
 variable "4031subnet_cidr" {
   description = "CIDR for public_prod subnet"
-  default = "172.31.1.0/24"
+  default = "172.31.100.0/24"
 }
 
 variable "ubuntu_ami" {
@@ -22,7 +22,7 @@ variable "ubuntu_ami" {
   default = "ami-0782e9ee97725263d"
 }
 
-variable "key_path" {
-  description = "SSH Public Key path"
-  default = "/home/moose/Documents/School/inet4007/inet4007.pem"
-}
+# variable "key_path" {
+#   description = "SSH Public Key path"
+#   default = "/home/moose/Documents/School/inet4007/inet4007.pem"
+# }
