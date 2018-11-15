@@ -1,5 +1,4 @@
 output "public_prod_0_ips" {
-  description = "Public Prod 0 Public IPs"
   value = ["${aws_instance.public_prod.0.public_ip}"
   , "${aws_instance.public_prod.0.private_ip}"]
 }
@@ -36,6 +35,6 @@ output "private_test_1_ips" {
   ,"${aws_instance.private_test.1.private_ip}"]
 }
 
-output "s3_log_bucket_arn"{
-  value = ["${aws_s3_bucket.log_bucket.arn}"]
-}
+# output "s3_log_bucket_arn"{
+#   value = ["${aws_s3_bucket.log_bucket.arn}"]
+# }
