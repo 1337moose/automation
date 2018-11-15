@@ -1,6 +1,7 @@
 # Inventory file for ansible
-# hosts for nfs install
 
+
+# hosts for nfs install
 [ldap_nfs:children]
 ldap_nfs_server
 ldap_nfs_client
