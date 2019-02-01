@@ -26,7 +26,7 @@ Currently the terraform folder contains a project for inet4007 labs 9 & 10. This
 inet4031 creates a simple VPC that contains 6 Ubuntu 16.04 Server images, one being intended for a NFS Server and five others for NFS clients.
 
 #### Instructions
-`git clone https://github.com/1337moose/automation.git`
+`git clone https://github.com/taylerhaviland/automation.git`
 
 `cd automation/terraform/inet4031`
 
